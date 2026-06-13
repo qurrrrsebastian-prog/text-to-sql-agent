@@ -1,20 +1,20 @@
-"""Text-to-SQL Agent with Gemini. Author: Avatar Putra Sigit"""
+"""Text-to-SQL Agent with Groq (Llama 3.3 70B). Author: Avatar Putra Sigit"""
 import os
 import sys
 import sqlite3
 import pandas as pd
 import streamlit as st
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "rkari_sales.db")
 
-def get_llm() -> ChatGoogleGenerativeAI:
-    """Initialize Gemini."""
-    key = os.environ.get("GEMINI_API_KEY")
+def get_llm() -> ChatGroq:
+    """Initialize Groq LLM."""
+    key = os.environ.get("GROQ_API_KEY")
     if not key:
-        st.error("GEMINI_API_KEY not found.")
+        st.error("GROQ_API_KEY not found.")
         sys.exit(1)
-    return ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=key, temperature=0.1)
+    return ChatGroq(model="llama-3.3-70b-versatile", api_key=key, temperature=0.1)
 
 def get_schema() -> str:
     """Get SQLite schema."""
@@ -35,8 +35,8 @@ def run_sql(query: str) -> pd.DataFrame:
     except Exception as e:
         return pd.DataFrame({"error": [str(e)]})
 
-def generate_sql(question: str, schema: str, llm: ChatGoogleGenerativeAI) -> str:
-    """Generate SQL from natural language using Gemini."""
+def generate_sql(question: str, schema: str, llm: ChatGroq) -> str:
+    """Generate SQL from natural language using Groq."""
     prompt = f"""You are a SQL expert. Given this schema:
 {schema}
 
@@ -50,7 +50,7 @@ Question: {question}"""
 
 def main() -> None:
     st.set_page_config(page_title="Text-to-SQL Agent", layout="wide")
-    st.title("🗣️ Text-to-SQL Agent — Gemini Powered")
+    st.title("🗣️ Text-to-SQL Agent — Groq Powered")
     st.markdown("Tanya data RKARI dalam bahasa Indonesia → AI generate SQL → tampilkan hasil")
 
     if not os.path.exists(DB_PATH):
