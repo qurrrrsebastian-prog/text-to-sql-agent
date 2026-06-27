@@ -1,36 +1,70 @@
-# Text-to-SQL Agent — Groq Powered
+# Project #12 — Text-to-SQL Agent
 
-![Python](https://img.shields.io/badge/Python-3.13-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.35-red)
-![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-orange)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=flat&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white" />
+  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=chainlink&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat" />
+</p>
 
-## 📌 Deskripsi
-Natural language to SQL agent untuk database bisnis. User tanya dalam bahasa Indonesia → AI (Groq Llama 3.3 70B) generate query SQLite → tampilkan tabel hasil.
+> Konversi natural language ke query SQL otomatis. Untuk non-technical users yang butuh data dari database tanpa nulis SQL.
 
-## 🎯 Fitur
-- Schema detection otomatis
-- Natural language → SQL dengan Groq
-- Execute SQL + tampilkan DataFrame
-- Safe query execution (read-only pattern)
+---
 
-## 🛠️ Tech Stack
-- Python, Streamlit, LangChain, Groq (Llama 3.3 70B), SQLite
+## Demo Langsung
 
-## 🚀 Cara Menjalankan
+[![Deploy to Streamlit Cloud](https://img.shields.io/badge/Deploy-Streamlit%20Cloud-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://share.streamlit.io/deploy?repository=qurrrrsebastian-prog/text-to-sql-agent)
+
+**Tech Stack:** `LangChain` · `SQLite` · `Google Gemini API` · `Streamlit`
+
+---
+
+## Fitur
+
+| Fitur | Status |
+|-------|--------|
+| NL to SQL query generation | ✅ |
+| Eksekusi query otomatis | ✅ |
+| Hasil dalam tabel interaktif | ✅ |
+| Validasi query safety | ✅ |
+| Database contoh built-in | ✅ |
+| Tema gelap AVA purple | ✅ |
+
+---
+
+## Cara Menjalankan
 
 ```bash
-# Ambil API key gratis di https://console.groq.com/keys
-$env:GROQ_API_KEY="gsk_....YOUR_KEY_HERE...."
+git clone https://github.com/qurrrrsebastian-prog/text-to-sql-agent.git
+cd text-to-sql-agent
 pip install -r requirements.txt
-python data/setup_db.py
+$env:GEMINI_API_KEY="your_api_key_here"
 streamlit run app.py
 ```
 
-## 📊 Key Insight
-- Text-to-SQL mengurangi barrier non-tech user untuk akses data
-- Llama 3.3 70B cukup powerful untuk schema sederhana (5 tabel)
-- Accuracy ~85% untuk query SELECT dengan 1-2 JOIN
+## Deploy ke Streamlit Cloud (GRATIS)
 
-## 👤 Author
-[Avatar Putra Sigit](https://linkedin.com/in/avatarputrasigit) — Founder & CEO @AVA.Group
-[GitHub](https://github.com/qurrrrsebastian-prog)
+1. [share.streamlit.io](https://share.streamlit.io) → Login GitHub
+2. **New app** → Pilih repo ini
+3. Tambahkan secret: `GEMINI_API_KEY`
+4. **Deploy**
+
+---
+
+## Struktur Project
+
+```
+text-to-sql-agent/
+├── app.py              # Main Streamlit app
+├── requirements.txt    # Dependencies
+├── data/               # Sample database
+├── .streamlit/
+│   └── config.toml    # AVA purple branding
+├── .gitignore
+└── LICENSE            # MIT License
+```
+
+---
+
+**Dibuat oleh:** [Avatar Putra Sigit](https://github.com/qurrrrsebastian-prog) · Founder @AVA.Group
