@@ -6,3 +6,10 @@ venv/
 env/
 .DS_Store
 data/*.db
+
+# Runtime SQLite database
+*.db
+app.db
+
+# Streamlit secrets
+.streamlit/secrets.toml
